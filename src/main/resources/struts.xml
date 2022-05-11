@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+    "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+	<constant name="struts.enable.DynamicMethodInvocation"
+		value="false" />
+
+	<constant name="struts.custom.i18n.resources"
+		value="ApplicationResources" />
+
+	<constant name="struts.devMode" value="false" />
+
+	<package name="default" extends="struts-default"
+		namespace="/registration">
+		<action name="authenticationAction"
+			class="com.joaogcm.struts2.hibernate.controller.authenticate.AuthenticationAction">
+			<result name="success">/WEB-INF/views/product/register.jsp</result>
+			<result name="error">/WEB-INF/views/authentication/authenticate.jsp
+			</result>
+		</action>
+
+		<action name="registeruser"
+			class="com.joaogcm.struts2.hibernate.controller.product.RegisterAction">
+			<result name="REGISTER">/WEB-INF/views/product/register.jsp</result>
+		</action>
+
+		<action name="report"
+			class="com.joaogcm.struts2.hibernate.controller.product.ReportAction">
+			<result name="REPORT">/WEB-INF/views/product/report.jsp</result>
+		</action>
+
+		<action name="updatedetails"
+			class="com.joaogcm.struts2.hibernate.controller.product.UpdateAction">
+			<result name="UPDATE">/WEB-INF/views/product/update.jsp</result>
+		</action>
+
+		<action name="deleterecord"
+			class="com.joaogcm.struts2.hibernate.controller.product.DeleteAction">
+			<result name="DELETE">/WEB-INF/views/product/delete.jsp</result>
+		</action>
+	</package>
+</struts>
