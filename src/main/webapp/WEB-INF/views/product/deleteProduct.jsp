@@ -5,16 +5,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Produto</title>
+<title>Remoção do Produto</title>
 </head>
 <body>
 	<h2>Struts 2 Create, Read, Update and Delete (CRUD) Example using
 		JDBC</h2>
-	<span><s:property value="msg" /></span>
+	<s:actionmessage />
 	<br>
 	<br>
-	<a href="report">
-		<button type="button">Report</button>
+	<a href="listProductAction">
+		<button type="button">Listar Produtos</button>
 	</a>
 </body>
 </html>

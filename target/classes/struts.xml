@@ -16,29 +16,32 @@
 		namespace="/registration">
 		<action name="authenticationAction"
 			class="com.joaogcm.struts2.hibernate.controller.authenticate.AuthenticationAction">
-			<result name="success">/WEB-INF/views/product/register.jsp</result>
+			<result name="success">/WEB-INF/views/product/insertProduct.jsp</result>
 			<result name="error">/WEB-INF/views/authentication/authenticate.jsp
 			</result>
 		</action>
 
-		<action name="registeruser"
-			class="com.joaogcm.struts2.hibernate.controller.product.RegisterAction">
-			<result name="REGISTER">/WEB-INF/views/product/register.jsp</result>
+		<action name="insertProductAction"
+			class="com.joaogcm.struts2.hibernate.controller.product.InsertProductAction">
+			<result name="insertProduct">/WEB-INF/views/product/insertProduct.jsp</result>
+			<result name="listProduct">/WEB-INF/views/product/listProduct.jsp</result>
 		</action>
 
-		<action name="report"
-			class="com.joaogcm.struts2.hibernate.controller.product.ReportAction">
-			<result name="REPORT">/WEB-INF/views/product/report.jsp</result>
+		<action name="listProductAction"
+			class="com.joaogcm.struts2.hibernate.controller.product.ListProductAction">
+			<result name="listProduct">/WEB-INF/views/product/listProduct.jsp</result>
 		</action>
 
-		<action name="updatedetails"
-			class="com.joaogcm.struts2.hibernate.controller.product.UpdateAction">
-			<result name="UPDATE">/WEB-INF/views/product/update.jsp</result>
+		<action name="updateProductAction"
+			class="com.joaogcm.struts2.hibernate.controller.product.UpdateProductAction">
+			<result name="updateProduct">/WEB-INF/views/product/updateProduct.jsp</result>
+			<result name="listProduct">/WEB-INF/views/product/listProduct.jsp</result>
 		</action>
 
-		<action name="deleterecord"
-			class="com.joaogcm.struts2.hibernate.controller.product.DeleteAction">
-			<result name="DELETE">/WEB-INF/views/product/delete.jsp</result>
+		<action name="deleteProductAction"
+			class="com.joaogcm.struts2.hibernate.controller.product.DeleteProductAction">
+			<result name="deleteProduct">/WEB-INF/views/product/deleteProduct.jsp</result>
+			<result name="listProduct">/WEB-INF/views/product/listProduct.jsp</result>
 		</action>
 	</package>
 </struts>

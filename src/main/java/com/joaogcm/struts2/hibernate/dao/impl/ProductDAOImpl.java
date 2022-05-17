@@ -5,25 +5,26 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.joaogcm.struts2.hibernate.connection.database.ConnectionDatabase;
-import com.joaogcm.struts2.hibernate.dao.EmpDAO;
+import com.joaogcm.struts2.hibernate.dao.ProductDAO;
 
-public class EmpDAOImpl extends ConnectionDatabase implements EmpDAO {
+public class ProductDAOImpl extends ConnectionDatabase implements ProductDAO {
 
 	@Override
-	public Integer registerUser(String uname, String uemail, String upass, String udeg) throws Exception {
+	public Integer insertProduct(String nmproduct, Double vlpriceproduct, String nmbrandproduct, Integer qtdproduct)
+			throws Exception {
 		PreparedStatement ps = null;
 		int i = 0;
 
 		try {
 			getConnection();
 
-			String sql = "INSERT INTO struts2crud (uname, uemail, upass, udeg) VALUES (?,?,?,?)";
+			String sql = "INSERT INTO product (nmproduct, vlpriceproduct, nmbrandproduct, qtdproduct) VALUES (?,?,?,?)";
 			ps = getConnection().prepareStatement(sql);
 
-			ps.setString(1, uname);
-			ps.setString(2, uemail);
-			ps.setString(3, upass);
-			ps.setString(4, udeg);
+			ps.setString(1, nmproduct);
+			ps.setDouble(2, vlpriceproduct);
+			ps.setString(3, nmbrandproduct);
+			ps.setInt(4, qtdproduct);
 
 			i = ps.executeUpdate();
 
@@ -39,14 +40,14 @@ public class EmpDAOImpl extends ConnectionDatabase implements EmpDAO {
 	}
 
 	@Override
-	public ResultSet report() throws SQLException, Exception {
+	public ResultSet listProducts() throws SQLException, Exception {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 
 		try {
 			getConnection();
 
-			String sql = "SELECT uname, uemail, upass, udeg FROM struts2crud";
+			String sql = "SELECT idproduct, nmproduct, vlpriceproduct, nmbrandproduct, qtdproduct FROM product";
 			ps = getConnection().prepareStatement(sql);
 
 			rs = ps.executeQuery();
@@ -63,17 +64,17 @@ public class EmpDAOImpl extends ConnectionDatabase implements EmpDAO {
 	}
 
 	@Override
-	public ResultSet fetchUserDetails(String uemail) throws SQLException, Exception {
+	public ResultSet listProductById(Integer idproduct) throws SQLException, Exception {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 
 		try {
 			getConnection();
 
-			String sql = "SELECT uname, uemail, upass, udeg FROM struts2crud WHERE uemail = ?";
+			String sql = "SELECT idproduct, nmproduct, vlpriceproduct, nmbrandproduct, qtdproduct FROM product WHERE idproduct = ?";
 			ps = getConnection().prepareStatement(sql);
 
-			ps.setString(1, uemail);
+			ps.setInt(1, idproduct);
 
 			rs = ps.executeQuery();
 
@@ -89,8 +90,8 @@ public class EmpDAOImpl extends ConnectionDatabase implements EmpDAO {
 	}
 
 	@Override
-	public Integer updateUserDetails(String uname, String uemail, String upass, String udeg, String uemailhidden)
-			throws SQLException, Exception {
+	public Integer updateProductById(String nmproduct, Double vlpriceproduct, String nmbrandproduct, Integer qtdproduct,
+			Integer idproduct) throws SQLException, Exception {
 		getConnection().setAutoCommit(false);
 		PreparedStatement ps = null;
 		int i = 0;
@@ -98,14 +99,14 @@ public class EmpDAOImpl extends ConnectionDatabase implements EmpDAO {
 		try {
 			getConnection();
 
-			String sql = "UPDATE struts2crud SET uname = ?, uemail = ?, upass = ?, udeg = ? WHERE uemail = ?";
+			String sql = "UPDATE product SET nmproduct = ?, vlpriceproduct = ?, nmbrandproduct = ?, qtdproduct = ? WHERE idproduct = ?";
 			ps = getConnection().prepareStatement(sql);
 
-			ps.setString(1, uname);
-			ps.setString(2, uemail);
-			ps.setString(3, upass);
-			ps.setString(4, udeg);
-			ps.setString(5, uemailhidden);
+			ps.setString(1, nmproduct);
+			ps.setDouble(2, vlpriceproduct);
+			ps.setString(3, nmbrandproduct);
+			ps.setInt(4, qtdproduct);
+			ps.setInt(5, idproduct);
 
 			i = ps.executeUpdate();
 
@@ -122,7 +123,7 @@ public class EmpDAOImpl extends ConnectionDatabase implements EmpDAO {
 	}
 
 	@Override
-	public Integer deleteUserDetails(String uemail) throws SQLException, Exception {
+	public Integer deleteProductById(Integer idproduct) throws SQLException, Exception {
 		getConnection().setAutoCommit(false);
 		PreparedStatement ps = null;
 		int i = 0;
@@ -130,10 +131,10 @@ public class EmpDAOImpl extends ConnectionDatabase implements EmpDAO {
 		try {
 			getConnection();
 
-			String sql = "DELETE FROM struts2crud WHERE uemail = ?";
+			String sql = "DELETE FROM product WHERE idproduct = ?";
 			ps = getConnection().prepareStatement(sql);
 
-			ps.setString(1, uemail);
+			ps.setInt(1, idproduct);
 
 			i = ps.executeUpdate();
 
